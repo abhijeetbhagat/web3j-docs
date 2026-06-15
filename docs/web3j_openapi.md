@@ -11,7 +11,7 @@ This workflow can be summed in the following steps:
 
 - Writing a Solidity smart contract
 
-- Generating the corresponding [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) project using [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/)
+- Generating the corresponding [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) project using [Web3j-CLI](command_line_tools.md)
 
 - Running the generated project as a standalone server
 
@@ -147,8 +147,8 @@ The available events are:
 ## Getting started with Web3j-OpenAPI
 
 ### Generate a project
-To generate an OpenAPI project using the [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) generator, you need to have the [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/) installed on your machine. 
-It’s easy to do (for Windows instructions head [here](http://docs.web3j.io/latest/command_line_tools/)):
+To generate an OpenAPI project using the [Web3j-OpenAPI](https://github.com/web3j/web3j-openapi) generator, you need to have the [Web3j-CLI](command_line_tools.md) installed on your machine.
+It’s easy to do (for Windows instructions head [here](command_line_tools.md)):
 	
 ```
 $ curl -L get.web3j.io | sh
@@ -179,7 +179,7 @@ You should be seeing logs similar to the following:
 
 ### Configure the project
 
-You can run the project easily, without specifying any configuration, using the [Web3j-cli](http://docs.web3j.io/latest/command_line_tools/).
+You can run the project easily, without specifying any configuration, using the [Web3j-cli](command_line_tools.md).
 
 If not, you need to specify runtime parameters. for example, the `private key` or `wallet file` for the signing,
 the `node endpoint` to connect to, etc.
@@ -268,10 +268,10 @@ println("Greeting method result: $greeting")
 
 ## Ways to generate an OpenAPI project
 
-First, you need to install the [Web3j-CLI](http://docs.web3j.io/latest/command_line_tools/) on your 
+First, you need to install the [Web3j-CLI](command_line_tools.md) on your
 machine. 
 
-It’s easy to do (for Windows instructions head [here](http://docs.web3j.io/latest/command_line_tools/)):
+It’s easy to do (for Windows instructions head [here](command_line_tools.md)):
                                	
 ```
 $ curl -L get.web3j.io | sh
@@ -346,7 +346,7 @@ be set. There are multiple ways of doing so:
 - Passing the parameters directly to the JAR or the executable.
 
 Also, you can run the project without worrying about any of this
-using the [Web3j-cli](http://docs.web3j.io/latest/command_line_tools/)
+using the [Web3j-cli](command_line_tools.md)
 
 ### Supported parameters
 
@@ -601,4 +601,3 @@ app.contracts
 ```
 
 Then run this code. You should be able to see events printing on the screen.
-

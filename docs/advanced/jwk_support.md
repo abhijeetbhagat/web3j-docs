@@ -1,16 +1,19 @@
 Json Web Key (JWK) support
 ==================
 
-In our days Json Web Key (JWK) files has started to be used more and more. Especially in web3 space where asymetric encryption is used for cryptographical proof, one example is in Decentralised Identity model on verifiable credentials.
+JSON Web Key (JWK) files are increasingly used in wallet, identity, and interoperability flows. Web3j provides a `Secp256k1JWK` type for generating JWK documents from secp256k1 keys.
 
-These types of files are derived from public-private key pairs which where previously generated under a certain algorithm like ECSDA or RSA. The coordinates are extracted according to the curved of the keys, from public key the coordinates x and y, from private key the coordinate d. Coordinates once obtained can be easily added to the public and private JWK file. Notice that the difference between public and private JWK is that the private file contains coordinate d.
+The generated JWK uses:
+
+- `kty = EC`
+- `crv = secp256k1`
+- public coordinates `x` and `y`
+- optional private coordinate `d`
 
 Asymmetric keys in Web3j
 -----------------------------
 
-So far Web3J was able to support generation of public-private key pair specific for EVM addresses. These key were generated using java.security and created as specific `org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey` and private key. These are generated using ECSDA algoritm under `secp256k1` curve, EVM specific.
-
-Starting with version `4.9.8` Secp256k1JWK was introduced. This class has the builder capabilities to directly generate the public or private jwk files that can be further used.
+Web3j key generation already uses secp256k1 for EVM addresses. `Secp256k1JWK` adds a simple builder so you can turn those keys into JWK output when another system expects that representation.
 
 Generate public JWK:
 -----------------------------
@@ -36,3 +39,5 @@ Secp256k1JWK jwk = new Secp256k1JWK.Builder(publicKey).withPrivateKey(privateKey
 ObjectMapper mapper = new ObjectMapper();
 System.out.println(mapper.writeValueAsString(jwk));
 ```
+
+The builder also validates explicit `x`, `y`, and `d` values if you need to assemble a JWK from existing coordinates rather than from Bouncy Castle key objects.

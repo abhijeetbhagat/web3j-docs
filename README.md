@@ -1,7 +1,7 @@
 # web3j-docs
 Web3j Documentation repository.
 
-[docs.web3j.io](http://docs.web3j.io)
+[docs.web3j.io](https://docs.web3j.io)
 
 ## Project setup
 
@@ -42,5 +42,9 @@ Set default version to latest
 mike set-default VERSION or ALIAS -p
 ```
 
-To update the versions of the dependencies simply change them in the `mkdocs.yml` file under the extra tag
+To update the published dependency placeholders, change the values under `extra` in `mkdocs.yml`.
 
+The current docs target:
+
+- Java artifacts: `org.web3j:*:5.0.3`
+- Android-tagged artifacts: `org.web3j:*:4.12.3-android`

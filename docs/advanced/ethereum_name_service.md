@@ -1,33 +1,37 @@
 Ethereum Name Service
 =====================
 
-The [Ethereum Name Service (ENS)](https://ens.domains) provides a human readable names to identify addresses on the Ethereum network. It is similar to the internet's domain name service (DNS) which provides human-readable domain names which are mapped to IP addresses.
+The [Ethereum Name Service (ENS)](https://ens.domains) provides human-readable names for addresses and onchain resources.
 
-In the case of ENS, the addresses are either wallet or smart contract addresses.
-
-E.g. instead of using the wallet address `0x19e03255f667bdfd50a32722df860b1eeaf4d635`, you can use `web3j.eth`.
+In practice, this means you can use a name such as `web3j.eth` anywhere Web3j expects an address.
 
 Usage in web3j
 --------------
 
-You can use ENS names anywhere you wish to transact in web3j. In practice this means, in smart contract wrappers, when you load them, such as:
+You can use ENS names anywhere you wish to transact in Web3j. This includes smart contract wrappers:
 
 ```java
 YourSmartContract contract = YourSmartContract.load(
         "0x<address>|<ensName>", web3j, credentials, contractGasProvider);
 ```
 
-Also, when performing Ether transfers, such as using the command line
-tools:
+and Ether transfers:
 
-```bash
-$ web3j wallet send <walletfile> 0x<address>|<ensName>
+```java
+TransactionReceipt receipt =
+        Transfer.sendFunds(
+                        web3j,
+                        credentials,
+                        "nick.eth",
+                        BigDecimal.ONE,
+                        Convert.Unit.ETHER)
+                .send();
 ```
 
 ENS Features Supported with Code Examples
 -----------------------------------------
 
-#### ENS is supported for these chains - 
+#### ENS is supported for these chains
 
 - Ethereum Mainnet
 - Sepolia Testnet
@@ -35,103 +39,75 @@ ENS Features Supported with Code Examples
 - Linea Mainnet
 - Linea Sepolia Testnet
 
-#### Code Examples -
+#### Code Examples
 
 - Forward resolution from ENS to address:
 
-```java 
+```java
 Web3j web3j = Web3j.build(new HttpService("<rpc_endpoint_url>"));
 EnsResolver ensResolver = new EnsResolver(web3j);
 
-String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
+String ensName = NameHash.normalise("nick.eth");
 System.out.println("ENS address = " + ensResolver.resolve(ensName));
 ```
 
-- Reverse Resolution from address to Primary ENS:
+- Reverse resolution from address to primary ENS:
 
-```java 
-// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -> luc.eth
-String ensPrimaryName = ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");
+```java
+String ensPrimaryName =
+        ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");
 ```
 
-- Set primary ENS name for any address:
+- Set primary ENS name:
 
-```java 
+```java
 Credentials credentials = Credentials.create("<private_key>");
-
-// Set Primary Name
-TransactionReceipt receiptResult1 = ensResolver.setReverseName("nick.eth", credentials);
-
-// Set Primary Name for Contract (or Address)
-// for address = 0x225f137127d9067788314bc7fcc1f36746a3c3B5
-// owner address (function caller) = credentials.getAddress()
-// resolver address = 0x9010A27463717360cAD99CEA8bD39b8705CCA238
-TransactionReceipt receiptResult2 = ensResolver.setReverseName(
-        "0x225f137127d9067788314bc7fcc1f36746a3c3B5",
-        credentials.getAddress(),
-        "0x9010A27463717360cAD99CEA8bD39b8705CCA238",
-        "nick.eth",
-        credentials
-    );
+TransactionReceipt receipt = ensResolver.setReverseName("nick.eth", credentials);
 ```
 
-- Get nameHash and labelHash for ENS:
+- Get `nameHash`, `labelHash`, and DNS-encoded values:
 
-```java 
-// ENS name: luc.eth
+```java
 String nameHashString = NameHash.nameHash("luc.eth");
 byte[] nameHash = NameHash.nameHashAsBytes("luc.eth");
 
-// ENS label: luc
-String labelHashString = NameHash.nameHash("luc");
-byte[] labelHash = NameHash.nameHashAsBytes("luc");
+String labelHashString = NameHash.labelHash("luc");
+byte[] labelHash = NameHash.labelHashAsBytes("luc");
 
-// DNS Encoded Name
 String dnsEncodedName = NameHash.dnsEncode("name.eth");
 ```
 
-- Getting and setting ENS records:
+- Get and set ENS text records:
 
-```java 
-// Get ENS text
+```java
 String url = ensResolver.getEnsText("nick.eth", "url");
-
-// Set ENS text
-TransactionReceipt receiptResult3 = ensResolver.setEnsText("nick.eth", "url", "http://example.com", credentials);
+TransactionReceipt receipt =
+        ensResolver.setEnsText("nick.eth", "url", "http://example.com", credentials);
 ```
 
-- Get Owner and Resolver address for any ENS name:
-
-```java 
-String resolver = ensResolver.getResolverAddress("luc.eth");
-String owner = ensResolver.getOwnerAddress("luc.eth");
-```
-
-
-Web3j implementation 
+Web3j implementation
 --------------------
 
-Behind the scenes, whenever you using web3j's transaction managers (which are derived from the
-[ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class), the [EnsResolver](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/ens/EnsResolver.java) is invoked to perform an ENS lookup if applicable.
+Whenever you use Web3j transaction managers, the [EnsResolver](https://github.com/LFDT-web3j/web3j/blob/main/core/src/main/java/org/web3j/ens/EnsResolver.java) is invoked to perform an ENS lookup if applicable.
 
 The resolution process is as follows:
 
--   Check to see if our Ethereum node is fully synced
--   If not fail
--   If it is synced, check the timestamp on the most recent block it has.
-
-    - If it's more than 3 minutes old, fail.
+-   Check whether the node is synced
+-   Fail if it is not
+-   If it is synced, check the timestamp on the latest block
+    - If it is older than the sync threshold, fail
     - Otherwise perform the lookup
 
-If you need to change the threshold parameter of what constitutes being synced to something other then 3 minutes, this can be done via the `setSyncThreshold` method in the [ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class.
+As of Web3j 5.0.3, `EnsResolver.resolve()` routes address resolution through the Universal Resolver and falls back as needed for older deployments. The resolver also supports CCIP-read or offchain lookup flows when the target resolver exposes them.
 
-Unicode Technical Standard (UTS) \#46
--------------------------------------
+If you need to change what constitutes a synced node, use `setSyncThreshold()` on `EnsResolver`.
 
-UTS #46 is the standard used to sanitise input on domain names. The web3j ENS implementation performs this sanitation on all inputs before attempting resolution. For details of the implementation, refer to the [NameHash](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/ens/NameHash.java) class.
+Normalisation
+-------------
+
+ENSIP-15 is used to normalise input before resolution. For implementation details, refer to the [NameHash](https://github.com/LFDT-web3j/web3j/blob/main/core/src/main/java/org/web3j/ens/NameHash.java) class.
 
 Registering domain names
 ------------------------
 
-Web3j does not support the registration of ENS name, although this is possible in Web3j using loading ENS contract but it requires manual calling. For instructions on how to do this, refer to the ENS [documentation](https://docs.ens.domains/).
-
+Web3j does not provide a high-level domain registration workflow. If you need to register or manage ENS names directly, use the ENS contracts or the official ENS tooling and documentation.

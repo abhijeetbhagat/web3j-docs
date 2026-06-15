@@ -1,7 +1,7 @@
 Manual Configuration
 ===============
 
-The simplest way to get started with Web3j is via the powerful [Web3j CLI](http://docs.web3j.io/latest/command_line_tools/). 
+The simplest way to get started with Web3j is via the [Web3j CLI](../command_line_tools.md).
 
 However, if you wish to configure your project manually, you can follow the steps outlined here.
 
@@ -11,7 +11,7 @@ Add the latest Web3j version to your project build configuration.
 
 Java:
 
-``` xml
+```xml
 <dependency>
   <groupId>org.web3j</groupId>
   <artifactId>core</artifactId>
@@ -21,7 +21,7 @@ Java:
 
 Android:
 
-``` xml
+```xml
 <dependency>
   <groupId>org.web3j</groupId>
   <artifactId>core</artifactId>
@@ -33,19 +33,22 @@ Android:
 
 Java:
 
-``` groovy
-compile ('org.web3j:core:{{ web3j.version }}')
+```groovy
+implementation("org.web3j:core:{{ web3j.version }}")
 ```
 
 Android:
 
-``` groovy
-compile ('org.web3j:core:{{ android.version }}')
+```groovy
+implementation("org.web3j:core:{{ android.version }}")
 ```
 
-## Plugins 
+The Java 5.x artifacts are compiled for Java 21.
 
-There are also gradle and maven plugins to help you generate Web3j Java wrappers for your Solidity smart contracts, thus allowing you to integrate such activities into your project lifecycle.
-Take a look at the project homepage for the [web3j-gradle-plugin](https://github.com/web3j/web3j-gradle-plugin)
- and [web3j-maven-plugin](https://github.com/web3j/web3j-maven-plugin) for details on how to use these plugins.
+The latest Android-tagged release visible from the project tags is `{{ android.version }}`. If you are building an Android app, prefer that artifact instead of the Java 5.x line.
 
+## Plugins
+
+There are also Gradle and Maven plugins to help you generate Web3j Java wrappers for your Solidity smart contracts, allowing you to integrate wrapper generation into your build lifecycle.
+
+Take a look at the project homepage for the [web3j-gradle-plugin](https://github.com/web3j/web3j-gradle-plugin) and [web3j-maven-plugin](https://github.com/web3j/web3j-maven-plugin) for usage details.

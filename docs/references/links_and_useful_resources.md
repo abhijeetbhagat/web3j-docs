@@ -9,5 +9,5 @@ Links and Useful Resources
 -   [Layout of variables in storage](https://solidity.readthedocs.io/en/v0.7.1/internals/layout_in_storage.html)
 -   [Ethereum tests](https://github.com/ethereum/tests) contains lots of common tests for clients
 -   [Etherscan](https://etherscan.io) is very useful for exploring blocks and transactions.
--   [Ethstats](https://ethstats.net/) provides a useful network dashboard. There is also a dedicated [Rinkeby testnet dashboard](http://rinkeby.io/).
+-   [Ethstats](https://ethstats.net/) provides a useful network dashboard.
 -   [Ethereum reddit](https://www.reddit.com/r/ethereum/)

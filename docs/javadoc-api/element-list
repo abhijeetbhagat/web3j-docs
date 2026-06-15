@@ -1,7 +1,9 @@
 org.web3j.contracts.token
 org.web3j.crypto
+org.web3j.dto
 org.web3j.ens
 org.web3j.ens.contracts.generated
+org.web3j.model
 org.web3j.protocol
 org.web3j.protocol.admin
 org.web3j.protocol.admin.methods.response
@@ -17,6 +19,7 @@ org.web3j.protocol.ipc
 org.web3j.protocol.rx
 org.web3j.protocol.websocket
 org.web3j.protocol.websocket.events
+org.web3j.service
 org.web3j.tx
 org.web3j.tx.exceptions
 org.web3j.tx.gas

@@ -18,7 +18,7 @@ There is also a [ReadonlyTransactionManager](https://github.com/web3j/web3j/blob
 Specifying the Chain Id on Transactions (EIP-155)
 -------------------------------------------------
 
-The RawTransactionManager takes an optional *chainId* parameter to specify the chain id to be used on transactions as per [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md). This prevents transactions from one chain being re-broadcast onto another chain, such as from Ropsten to Mainnet:
+The RawTransactionManager takes an optional *chainId* parameter to specify the chain id to be used on transactions as per [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md). This prevents transactions from one chain being re-broadcast onto another chain, such as from a testnet to Mainnet:
 
 ```java
 TransactionManager transactionManager = new RawTransactionManager(

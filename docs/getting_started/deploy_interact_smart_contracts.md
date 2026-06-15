@@ -9,7 +9,7 @@ To generate the wrapper code, compile your smart contract:
 $ solc <contract>.sol --bin --abi --optimize -o <output-dir>/
 ```
 
-Then generate the wrapper code using the [Web3j CLI](http://docs.web3j.io/latest/command_line_tools/):
+Then generate the wrapper code using the [Web3j CLI](../command_line_tools.md):
 
 ``` bash
 web3j generate solidity -b /path/to/<smart-contract>.bin -a /path/to/<smart-contract>.abi -o /path/to/src/main/java -p com.your.organisation.name
@@ -76,4 +76,3 @@ There are two integration tests that have been written to fully demonstrate the 
 [HumanStandardTokenGeneratedIT](https://github.com/web3j/web3j/tree/master/integration-tests/src/test/java/org/web3j/protocol/scenarios/HumanStandardTokenGeneratedIT.java) uses the generated HumanStandardTokenGenerated [Solidity smart contract wrappers](../smart_contracts/construction_and_deployment.md#solidity-smart-contract-wrappers) to demonstrate this.
 
 Alternatively, if you do not wish to use a smart contract wrapper and would like to work directly with the underlying JSON-RPC calls, please refer to [HumanStandardTokenIT](https://github.com/web3j/web3j/tree/master/integration-tests/src/test/java/org/web3j/protocol/scenarios/HumanStandardTokenIT.java).
-

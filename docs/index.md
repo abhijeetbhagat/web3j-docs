@@ -1,47 +1,38 @@
 Web3j
 =====
 
-Web3j is a highly modular, reactive, type safe Java and Android library for working with Smart Contracts and integrating with clients (nodes) on the Ethereum network:
+Web3j is a highly modular, reactive, type safe Java and Android library for working with smart contracts and integrating with Ethereum clients:
 
 ![image](img/web3j_network.png)
 
-This allows you to work with the [Ethereum](https://www.ethereum.org/) blockchain, without the additional overhead of having to write your own integration code for the platform.
+This allows you to work with the [Ethereum](https://www.ethereum.org/) blockchain without writing your own low-level integration code.
 
-The [Java and the Blockchain](https://www.youtube.com/watch?v=ea3miXs_P6Y) talk provides an overview of blockchain, Ethereum and web3j.
+The [Java and the Blockchain](https://www.youtube.com/watch?v=ea3miXs_P6Y) talk provides an overview of blockchain, Ethereum and Web3j.
 
 Features
 ========
 
--   Complete implementation of Ethereum's [JSON-RPC](https://eth.wiki/json-rpc/API) client API over HTTP and IPC
+-   Complete implementation of Ethereum's [JSON-RPC](https://ethereum.org/en/developers/docs/apis/json-rpc/) client API over HTTP, WebSockets and IPC
 -   Ethereum wallet support
--   Auto-generation of Java smart contract wrappers to create, deploy, transact with and call smart contracts from native Java code ([Solidity](http://solidity.readthedocs.io/en/latest/using-the-compiler.html#using-the-commandline-compiler) and [Truffle](https://github.com/trufflesuite/truffle) definition formats supported)
+-   Auto-generation of Java smart contract wrappers to create, deploy, transact with and call smart contracts from native Java code
 -   Reactive-functional API for working with filters
 -   [Ethereum Name Service (ENS)](https://ens.domains/) support
--   Support for OpenEthereum's [Personal](https://openethereum.github.io/wiki/JSONRPC-personal-module), and Geth's [Personal](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal) client APIs
--   Support for [Alchemy](https://alchemyapi.io/) and [Infura](https://infura.io/), so you don't have to run an Ethereum client yourself
+-   Support for typed transactions including EIP-2930, EIP-1559, EIP-4844 and EIP-7702
+-   Support for Account Abstraction JSON-RPC methods such as `eth_sendUserOperation`
+-   Support for Geth, Besu, legacy Parity/OpenEthereum-compatible RPC modules, hosted providers, and Besu privacy extensions
+-   Support for [Alchemy](https://alchemyapi.io/) and [Infura](https://infura.io/)
 -   Support for ERC20 and ERC721 token standards
--   Support for HSM
+-   Support for HSM-based signing, AWS KMS integration, and JWK generation
 -   Comprehensive integration tests demonstrating a number of the above scenarios
 -   Command line tools
--   Android compatible
--   Support for JP Morgan's Quorum via
-    [web3j-quorum](https://github.com/web3j/quorum)
+-   Android-compatible artifacts via the latest Android-tagged release
+-   Support for [EEA privacy features](https://entethalliance.org/technical-documents/) as implemented by [Hyperledger Besu](https://besu.hyperledger.org/)
 
 Dependencies
 ============
 
-It has five runtime dependencies:
+The Java 5.x artifacts are compiled for Java 21.
 
--   [RxJava](https://github.com/ReactiveX/RxJava) for its reactive-functional API
--   [OKHttp](https://hc.apache.org/httpcomponents-client-ga/index.html) for HTTP connections
--   [Jackson Core](https://github.com/FasterXML/jackson-core) for fast JSON serialisation/deserialization
--   [Bouncy Castle](https://www.bouncycastle.org/) for crypto
--   [Jnr-unixsocket](https://github.com/jnr/jnr-unixsocket) for \*nix IPC (not available on Android)
+If you are targeting Android, use the latest Android-tagged Web3j artifact published by the project. At the time of this docs refresh that is `{{ android.version }}`.
 
-It also uses [JavaPoet](https://github.com/square/javapoet) for generating smart contract wrappers
-
-Commercial support and training
-===============================
-
-Commercial support and training is available from [Web3 Labs](https://www.web3labs.com/web3j-sdk).
-
+For Maven and Gradle snippets, see [Manual Configuration](getting_started/manual_configuration.md).
