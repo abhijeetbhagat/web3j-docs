@@ -29,6 +29,8 @@ from` kzg_to_versioned_hash`.
 We can send a signed EIP-4844 transaction to `eth_sendRawTransaction` and the raw form must be the network form. 
 This means it includes the tx_payload_body, blobs, KZG commitments, and KZG proofs.
 
+From Web3j v5.0.1 onwards, EIP-4844 signing uses the transaction payload without the blob sidecar when generating the signature, while the raw network form sent to `eth_sendRawTransaction` still includes the sidecar data.
+
 Each of these elements are defined as follows:
 
 - <b>tx_payload_body</b> - is the TransactionPayloadBody of standard EIP-2718 blob transaction

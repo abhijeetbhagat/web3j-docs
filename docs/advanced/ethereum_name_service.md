@@ -47,6 +47,8 @@ String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
 System.out.println("ENS address = " + ensResolver.resolve(ensName));
 ```
 
+From Web3j v5 onwards, `EnsResolver.resolve(name)` uses the Universal Resolver path by default. This improves ENSv2, wildcard and CCIP-Read readiness for forward resolution. The built-in Universal Resolver mapping currently covers Ethereum Mainnet and Sepolia.
+
 - Reverse Resolution from address to Primary ENS:
 
 ```java 
@@ -121,7 +123,7 @@ The resolution process is as follows:
 -   If it is synced, check the timestamp on the most recent block it has.
 
     - If it's more than 3 minutes old, fail.
-    - Otherwise perform the lookup
+    - Otherwise perform the lookup through the Universal Resolver path for forward resolution
 
 If you need to change the threshold parameter of what constitutes being synced to something other then 3 minutes, this can be done via the `setSyncThreshold` method in the [ManagedTransaction](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/tx/ManagedTransaction.java) class.
 
@@ -134,4 +136,3 @@ Registering domain names
 ------------------------
 
 Web3j does not support the registration of ENS name, although this is possible in Web3j using loading ENS contract but it requires manual calling. For instructions on how to do this, refer to the ENS [documentation](https://docs.ens.domains/).
-
