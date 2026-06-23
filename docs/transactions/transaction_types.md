@@ -13,4 +13,4 @@ The subsequent sections outline the key transaction attributes required for the 
 
 Transaction and RawTransaction objects are used interchangeably in all of the subsequent examples.
 
-Web3j v5 also supports newer typed transactions including EIP-7702 delegated smart account transactions. For details, refer to [EIP-7702 Transaction](EIP_transaction_types/eip7702_transaction.md).
+Web3j supports newer typed transactions including EIP-7702 delegated smart account transactions. For details, refer to [EIP-7702 Transaction](EIP_transaction_types/eip7702_transaction.md).

@@ -48,43 +48,7 @@ In both the Java and Android builds:
 -   Quantity payload types are returned as [BigIntegers](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html). For simple results, you can obtain the quantity as a String via [Response](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/core/Response.java).getResult().
 -   It's also possible to include the raw JSON payload in responses via the *includeRawResponse* parameter, present in the [HttpService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/http/HttpService.java) and [IpcService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/ipc/IpcService.java) classes.
 
-v5 compatibility notes
-----------------------
+Compatibility notes
+-------------------
 
--   `EthLog.getLogs()` now returns `List<EthLog.LogResult<?>>`. If your code uses raw `EthLog.LogResult`, update it to use the wildcard form.
 -   JSON serialization and deserialization internals now use Jackson 3 package names under `tools.jackson.*`. If your code directly uses `ObjectMapperFactory` or Jackson implementation classes alongside web3j, verify your imports during upgrade.
-
-Account abstraction RPC methods
--------------------------------
-
-Web3j v5 adds support for EIP-4337 user operation RPC methods:
-
--   `ethSendUserOperation`
--   `ethEstimateUserOperationGas`
--   `ethGetUserOperationByHash`
--   `ethGetUserOperationReceipt`
--   `ethSupportedEntryPoints`
-
-```java
-UserOperationStruct userOperation =
-        UserOperationStruct.createEthSendUserOperationTransaction(
-                "0xa70e8dd61c5d32be8058bb8eb970870f07233155",
-                BigInteger.ONE,
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0",
-                "0x0");
-
-EthSendUserOperation response =
-        web3j.ethSendUserOperation(
-                        userOperation,
-                        "0xa70e8dd61c5d32be8058bb8eb970870f07233156")
-                .send();
-
-System.out.println(response.getUserOperationHash());
-```

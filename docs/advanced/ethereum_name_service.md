@@ -47,7 +47,7 @@ String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
 System.out.println("ENS address = " + ensResolver.resolve(ensName));
 ```
 
-From Web3j v5 onwards, `EnsResolver.resolve(name)` uses the Universal Resolver path by default. This improves ENSv2, wildcard and CCIP-Read readiness for forward resolution. The built-in Universal Resolver mapping currently covers Ethereum Mainnet and Sepolia.
+Web3j is now compatible for upcoming ENSv2 upgrade.
 
 - Reverse Resolution from address to Primary ENS:
 
