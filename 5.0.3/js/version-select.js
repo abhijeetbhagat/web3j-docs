@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }).version;
 
         var select = makeSelect(versions.map(function (i) {
-            return {text: i.title || i.version, value: i.version};
+            return {text: i.title, value: i.version};
         }), realVersion);
         select.addEventListener("change", function (event) {
             window.location.href = ABS_BASE_URL + "/../" + this.value;
