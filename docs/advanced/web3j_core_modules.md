@@ -47,3 +47,8 @@ In both the Java and Android builds:
 
 -   Quantity payload types are returned as [BigIntegers](https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html). For simple results, you can obtain the quantity as a String via [Response](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/core/Response.java).getResult().
 -   It's also possible to include the raw JSON payload in responses via the *includeRawResponse* parameter, present in the [HttpService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/http/HttpService.java) and [IpcService](https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/ipc/IpcService.java) classes.
+
+Compatibility notes
+-------------------
+
+-   JSON serialization and deserialization internals now use Jackson 3 package names under `tools.jackson.*`. If your code directly uses `ObjectMapperFactory` or Jackson implementation classes alongside web3j, verify your imports during upgrade.

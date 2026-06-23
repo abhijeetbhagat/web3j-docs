@@ -39,10 +39,12 @@ nav:
       - Transaction Mechanisms: transactions/transaction_mechanisms.md
       - Transaction Nonce: transactions/transaction_nonce.md
       - Transaction Types: transactions/transaction_types.md
+      - Ethereum Logs: transactions/ethereum_logs.md
       - EIP Transaction Types:
           - EIP-2930 Transaction: transactions/EIP_transaction_types/eip2930_transaction.md
           - EIP-1559 Transaction: transactions/EIP_transaction_types/eip1559_transaction.md
           - EIP-4844 Blob Transaction: transactions/EIP_transaction_types/eip4844_blob_transaction.md
+          - EIP-7702 Transaction: transactions/EIP_transaction_types/eip7702_transaction.md
       - Transactions and Smart Contracts: transactions/transactions_and_smart_contracts.md
       - Wallet Files: transactions/wallet_files.md
   - Web3j Eth2 Client: web3j_eth2_client.md
@@ -59,6 +61,7 @@ nav:
       - Privacy with Hyperledger Besu: privacy/privacy_with_besu.md
       - Privacy Support in Web3j: privacy/privacy_support_web3j.md
   - Advanced:
+      - Account Abstraction: advanced/account_abstraction.md
       - Recursive Length Prefix: advanced/recursive_length_prefix.md
       - Filters and Events: advanced/filters_and_events.md
       - Management Apis: advanced/management_apis.md
@@ -94,7 +97,7 @@ theme:
 # Customization
 extra:
   web3j:
-    version: 4.12.3
+    version: 5.0.3
   android:
     version: 4.6.0
   sokt:
