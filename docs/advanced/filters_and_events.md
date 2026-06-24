@@ -1,5 +1,5 @@
-Filters and Events
-==================
+Listening to Events
+===================
 
 Filters provide notifications of certain events taking place in the Ethereum network. There are three classes of filter supported in Ethereum:
 
