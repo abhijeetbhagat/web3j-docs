@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-geth-besu-or-openethereum" class="md-skip">
+        <a href="#use-geth-or-besu" class="md-skip">
           Skip to content
         </a>
       
@@ -374,85 +374,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-geth-besu-or-openethereum" class="md-nav__link">
+  <a href="#use-geth-or-besu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Geth, Besu or OpenEthereum
+        Use Geth or Besu
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-epirus-local" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Epirus Local
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Epirus Local">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Getting started
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-the-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Start the client
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-from-previous-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Load from previous configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#send-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Send requests
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2603,85 +2531,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-geth-besu-or-openethereum" class="md-nav__link">
+  <a href="#use-geth-or-besu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Geth, Besu or OpenEthereum
+        Use Geth or Besu
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-epirus-local" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Epirus Local
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Epirus Local">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Features
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Getting started
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#start-the-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Start the client
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-from-previous-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Load from previous configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#send-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Send requests
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2710,7 +2566,7 @@
 <p>Web3j interacts with Ethereum client nodes.
 If you don't want to connect to one of the existing networks,
 you have different options to start a local node.</p>
-<h2 id="use-geth-besu-or-openethereum">Use Geth, Besu or OpenEthereum<a class="headerlink" href="#use-geth-besu-or-openethereum" title="Permanent link">&para;</a></h2>
+<h2 id="use-geth-or-besu">Use Geth or Besu<a class="headerlink" href="#use-geth-or-besu" title="Permanent link">&para;</a></h2>
 <p><a href="https://geth.ethereum.org/docs/getting-started">Geth</a>:</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span>geth<span class="w"> </span>--rpcapi<span class="w"> </span>personal,db,eth,net,web3<span class="w"> </span>--rpc<span class="w"> </span>--testnet
 </code></pre></div>
@@ -2720,71 +2576,8 @@ you have different options to start a local node.</p>
 </code></pre></div>
 
 <p>The <code>dev</code> network uses has <a href="https://besu.hyperledger.org/en/stable/Reference/Accounts-for-Testing/#development-mode">some handy default parameters</a>.</p>
-<p><a href="https://openethereum.github.io/wiki/Basic-Usage">OpenEthereum</a>:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openethereum<span class="w"> </span>--chain<span class="w"> </span>testnet<span class="w">  </span>
-</code></pre></div>
-
 <p>Instructions on obtaining Ether to transact on the network can be found in the
 <a href="https://docs.web3j.io/transactions/#ethereum-testnets">testnet section of the docs</a>.</p>
-<h2 id="use-epirus-local">Use Epirus Local<a class="headerlink" href="#use-epirus-local" title="Permanent link">&para;</a></h2>
-<p>Epirus-local is a local ethereum client, similar to what <a href="https://github.com/trufflesuite/ganache">Ganache</a> provides, written in Kotlin.</p>
-<p>This project relies on <a href="https://github.com/web3j/web3j-evm">web3-evm</a> to execute user requests.</p>
-<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Allows json-rpc interactions with a local ethereum blockchain.</li>
-<li>Generates a default genesis file containing 10 ethereum accounts or lets you use your own genesis.</li>
-<li>Provides a CLI to run the client.</li>
-<li>Handles these operations:<ul>
-<li><code>eth_blockNumber</code></li>
-<li><code>eth_getTransactionCount</code></li>
-<li><code>eth_getBalance</code></li>
-<li><code>eth_sendTransaction</code></li>
-<li><code>eth_sendRawTransaction</code></li>
-<li><code>eth_estimateGas</code></li>
-<li><code>eth_getBlockTransactionCountByHash</code></li>
-<li><code>eth_getBlockTransactionCountByNumber</code></li>
-<li><code>eth_getTransactionReceipt</code></li>
-<li><code>eth_getCode</code></li>
-<li><code>eth_call</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h3>
-<p><code>git clone https://github.com/epirus-io/epirus-local &amp;&amp; cd epirus-local</code></p>
-<p><code>./gradlew installDist</code></p>
-<h4 id="run-in-linux">Run in Linux:<a class="headerlink" href="#run-in-linux" title="Permanent link">&para;</a></h4>
-<p><code>build/install/epirus-local/bin/epirus-local [command]</code></p>
-<h4 id="run-in-windows">Run in Windows<a class="headerlink" href="#run-in-windows" title="Permanent link">&para;</a></h4>
-<p><code>build\install\epirus-local\bin\epirus-local.bat [command]</code></p>
-<h3 id="start-the-client">Start the client<a class="headerlink" href="#start-the-client" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>epirus-local start -d=/path/to/directory -p=9090
-</code></pre></div>
-
-<p>This command generates a new genesis file with 10 accounts filled with 100 ether.</p>
-<p><img alt="start command" src="https://raw.githubusercontent.com/epirus-io/epirus-local/master/resources/epirus-local-start-command-demo.gif" /></p>
-<h3 id="load-from-previous-configuration">Load from previous configuration<a class="headerlink" href="#load-from-previous-configuration" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>epirus-local load -g=/path/to/genesis
-</code></pre></div>
-
-<p>This command loads a pre-existing genesis-file from a certain path.</p>
-<p><img alt="load command" src="https://raw.githubusercontent.com/epirus-io/epirus-local/master/resources/epirus-local-load-command-demo.gif" /></p>
-<h3 id="send-requests">Send requests<a class="headerlink" href="#send-requests" title="Permanent link">&para;</a></h3>
-<h6 id="example-of-a-request">Example of a request<a class="headerlink" href="#example-of-a-request" title="Permanent link">&para;</a></h6>
-<div class="codehilite"><pre><span></span><code>curl -X POST --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_sendTransaction&quot;,&quot;params&quot;:[{
-  &quot;from&quot;: &quot;0x8f496c16955a7bb9b5e1ea0383d01f87372ab520&quot;,
-  &quot;to&quot;: &quot;0xd46e8dd67c5d32be8058bb8eb970870f07244567&quot;,
-  &quot;gas&quot;: &quot;0x76c0&quot;, 
-  &quot;gasPrice&quot;: &quot;0x9184e72a000&quot;, 
-  &quot;value&quot;: &quot;0x9184e72a&quot;,
-  &quot;nonce&quot;: &quot;0x1&quot;
-}],&quot;id&quot;:1}&#39; host:port
-</code></pre></div>
-
-<h6 id="example-of-a-response">Example of a response<a class="headerlink" href="#example-of-a-response" title="Permanent link">&para;</a></h6>
-<div class="codehilite"><pre><span></span><code>{&quot;id&quot; : 1, &quot;jsonrpc&quot; : &quot;2.0&quot;, &quot;result&quot; : &quot;0xc631caa67cab48ead77a58321bbb0c76f4060751a4bb3d5b45b99c4a68b1a7b7&quot;}
-</code></pre></div>
-
-<p>For more information about the requests, check out the Ethereum <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC">json-rpc</a> api.</p>
 
 
 

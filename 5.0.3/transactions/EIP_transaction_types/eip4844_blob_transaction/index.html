@@ -2664,7 +2664,6 @@ from<code>kzg_to_versioned_hash</code>.</p>
 <h3 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h3>
 <p>We can send a signed EIP-4844 transaction to <code>eth_sendRawTransaction</code> and the raw form must be the network form. 
 This means it includes the tx_payload_body, blobs, KZG commitments, and KZG proofs.</p>
-<p>From Web3j v5.0.1 onwards, EIP-4844 signing uses the transaction payload without the blob sidecar when generating the signature, while the raw network form sent to <code>eth_sendRawTransaction</code> still includes the sidecar data.</p>
 <p>Each of these elements are defined as follows:</p>
 <ul>
 <li><b>tx_payload_body</b> - is the TransactionPayloadBody of standard EIP-2718 blob transaction</li>

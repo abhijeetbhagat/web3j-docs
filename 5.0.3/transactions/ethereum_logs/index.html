@@ -1158,10 +1158,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#historical-log-queries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example
+        Historical log queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subscribing-to-ethereum-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscribing to Ethereum logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical use cases
       
     </span>
   </a>
@@ -2537,10 +2570,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#historical-log-queries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example
+        Historical log queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subscribing-to-ethereum-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscribing to Ethereum logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical use cases
       
     </span>
   </a>
@@ -2568,13 +2634,22 @@
 
 
 <h1 id="ethereum-logs">Ethereum Logs<a class="headerlink" href="#ethereum-logs" title="Permanent link">&para;</a></h1>
-<p>Ethereum logs are returned from log queries such as <code>eth_getLogs</code> and contain the event data emitted by smart contracts.</p>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Ethereum logs are the records produced by smart contract events during transaction execution. They are included in transaction receipts and can be queried later using log APIs or streamed as new matching logs are emitted on-chain.</p>
+<p>In Web3j, logs are commonly used for:</p>
+<ul>
+<li>Monitoring smart contract events such as token transfers, approvals and ownership changes</li>
+<li>Querying historical contract activity for analytics or backfilling application state</li>
+<li>Reacting to on-chain events in near real time</li>
+<li>Filtering logs by contract address and indexed event topics</li>
+</ul>
+<h2 id="historical-log-queries">Historical log queries<a class="headerlink" href="#historical-log-queries" title="Permanent link">&para;</a></h2>
+<p>Use <code>EthFilter</code> to define the block range, contract address and topics you want to match, then call <code>ethGetLogs</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">EthFilter</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span>
 <span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">EthFilter</span><span class="p">(</span>
 <span class="w">                </span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">EARLIEST</span><span class="p">,</span>
 <span class="w">                </span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">LATEST</span><span class="p">,</span>
-<span class="w">                </span><span class="s">&quot;&lt;contract-address&gt;&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="s">&quot;&lt;contract-address&gt;&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addSingleTopic</span><span class="p">(</span><span class="s">&quot;&lt;event-signature-topic&gt;&quot;</span><span class="p">);</span>
 
 <span class="n">EthLog</span><span class="w"> </span><span class="n">ethLog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">web3j</span><span class="p">.</span><span class="na">ethGetLogs</span><span class="p">(</span><span class="n">filter</span><span class="p">).</span><span class="na">send</span><span class="p">();</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">EthLog</span><span class="p">.</span><span class="na">LogResult</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ethLog</span><span class="p">.</span><span class="na">getLogs</span><span class="p">();</span>
@@ -2588,6 +2663,42 @@
 </code></pre></div>
 
 <p>When working with <code>EthLog</code>, Web3j uses <code>List&lt;EthLog.LogResult&lt;?&gt;&gt;</code> for the returned log entries.</p>
+<h2 id="subscribing-to-ethereum-logs">Subscribing to Ethereum logs<a class="headerlink" href="#subscribing-to-ethereum-logs" title="Permanent link">&para;</a></h2>
+<p>To subscribe to new matching logs, use <code>ethLogFlowable(filter)</code>. Internally Web3j creates a <code>LogFilter</code> and emits matching <code>Log</code> objects through a Flowable.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">EthFilter</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">EthFilter</span><span class="p">(</span>
+<span class="w">                </span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">LATEST</span><span class="p">,</span>
+<span class="w">                </span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">LATEST</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;&lt;contract-address&gt;&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addSingleTopic</span><span class="p">(</span><span class="s">&quot;&lt;event-signature-topic&gt;&quot;</span><span class="p">);</span>
+
+<span class="n">Disposable</span><span class="w"> </span><span class="n">subscription</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">web3j</span><span class="p">.</span><span class="na">ethLogFlowable</span><span class="p">(</span><span class="n">filter</span><span class="p">).</span><span class="na">subscribe</span><span class="p">(</span><span class="n">log</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Block: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="na">getBlockNumber</span><span class="p">());</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Tx hash: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="na">getTransactionHash</span><span class="p">());</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Data: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="na">getData</span><span class="p">());</span>
+<span class="w">        </span><span class="p">});</span>
+</code></pre></div>
+
+<p>You can cancel the subscription when it is no longer required:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">subscription</span><span class="p">.</span><span class="na">dispose</span><span class="p">();</span>
+</code></pre></div>
+
+<h2 id="topic-filtering">Topic filtering<a class="headerlink" href="#topic-filtering" title="Permanent link">&para;</a></h2>
+<p>Ethereum logs can be filtered by indexed event parameters. In Web3j this is done through <code>EthFilter</code>.</p>
+<ul>
+<li><code>addSingleTopic(...)</code> matches a specific topic</li>
+<li><code>addOptionalTopics(..., ...)</code> matches one of several topics in the same position</li>
+<li>a contract address can be supplied directly in the <code>EthFilter</code> constructor</li>
+</ul>
+<p>This makes it possible to subscribe only to the events that are relevant to your application.</p>
+<h2 id="typical-use-cases">Typical use cases<a class="headerlink" href="#typical-use-cases" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Listen for ERC-20 <code>Transfer</code> events to update balances in a wallet or explorer</li>
+<li>Watch protocol-specific events to trigger off-chain jobs</li>
+<li>Backfill historical logs for a dashboard or analytics pipeline</li>
+<li>Track emitted events from a single contract deployment across a chosen block range</li>
+</ul>
 
 
 
