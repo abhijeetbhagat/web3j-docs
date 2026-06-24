@@ -29,7 +29,7 @@
     
     
       
-        <title>Filters and Flowables - Web3j</title>
+        <title>Listening to events - Web3j</title>
       
     
     
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Filters and Flowables
+              Listening to events
             
           </span>
         </div>
@@ -444,7 +444,7 @@
   <span class="md-ellipsis">
     
   
-    Filters and Flowables
+    Listening to events
   
 
     
@@ -462,7 +462,7 @@
   <span class="md-ellipsis">
     
   
-    Filters and Flowables
+    Listening to events
   
 
     
@@ -2583,7 +2583,7 @@
   
 
 
-  <h1>Filters and Flowables</h1>
+  <h1>Listening to events</h1>
 
 <h2 id="filters">Filters<a class="headerlink" href="#filters" title="Permanent link">&para;</a></h2>
 <p>Web3j functional-reactive nature makes it really simple to setup observers that notify subscribers of events taking place on the blockchain.</p>
@@ -2613,7 +2613,7 @@
 <span class="p">});</span>
 </code></pre></div>
 
-<p>There are a number of other transaction and block replay Flowables described in <a href="../../advanced/filters_and_events/">Filters and Events</a>.</p>
+<p>There are a number of other transaction and block replay Flowables described in <a href="../../advanced/filters_and_events/">Listening to Events</a>.</p>
 <p>Topic filters are also supported:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">EthFilter</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EthFilter</span><span class="p">(</span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">EARLIEST</span><span class="p">,</span>
 <span class="w">        </span><span class="n">DefaultBlockParameterName</span><span class="p">.</span><span class="na">LATEST</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">contract</span><span class="o">-</span><span class="n">address</span><span class="o">&gt;</span><span class="p">)</span>
@@ -2628,7 +2628,7 @@
 </code></pre></div>
 
 <p><strong>Note:</strong> filters are not supported on Infura.</p>
-<p>For further information refer to <a href="../../advanced/filters_and_events/">Filters and Events</a> and the <a href="https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java">Web3jRx</a> interface.</p>
+<p>For further information refer to <a href="../../advanced/filters_and_events/">Listening to Events</a> and the <a href="https://github.com/web3j/web3j/blob/master/core/src/main/java/org/web3j/protocol/rx/Web3jRx.java">Web3jRx</a> interface.</p>
 <h2 id="publishsubscribe">Publish/Subscribe<a class="headerlink" href="#publishsubscribe" title="Permanent link">&para;</a></h2>
 <p>Ethereum clients implement the <a href="https://geth.ethereum.org/docs/rpc/pubsub">pub/sub</a> mechanism that provides the capability to subscribe to events from the network, allowing these clients to take custom actions as needed. In doing so it alleviates the need to use polling and is more efficient. This is achieved by using the WebSocket protocol instead of HTTP protocol.</p>
 <p>Pub/Sub methods are available via the <em>WebSocketService</em> class, and allows the client to:</p>
